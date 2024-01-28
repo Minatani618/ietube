@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/folderIndPage.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>作品名: <%= folderName %></p>
+    <div id="optionsContainer">
+      <!-- 表示列数ボタンコンテナ -->
+      <div id="colNumConOpttainer" class="optContainer">
+        <div class="optContHeader"><p>表示列数</p></div>
+        <div class="optContBody">
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input
+              type="hidden"
+              name="displayNumOfPage"
+              value="<%= displayNumOfPage %>"
+            />
+            <input type="hidden" name="colNum" value="1" />
+            <button id="colNumOpt1" class="btn btn-secondary" type="submit">
+              1列
+            </button>
+          </form>
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input
+              type="hidden"
+              name="displayNumOfPage"
+              value="<%= displayNumOfPage %>"
+            />
+            <input type="hidden" name="colNum" value="2" />
+            <button id="colNumOpt2" class="btn btn-secondary">2列</button>
+          </form>
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input
+              type="hidden"
+              name="displayNumOfPage"
+              value="<%= displayNumOfPage %>"
+            />
+            <input type="hidden" name="colNum" value="3" />
+            <button id="colNumOpt3" class="btn btn-secondary">3列</button>
+          </form>
+        </div>
+      </div>
+      <!-- 表示要素数ボタンコンテナ -->
+      <div id="displayNumOptContainer" class="optContainer">
+        <div class="optContHeader"><p>表示要素数</p></div>
+        <div class="optContBody">
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input type="hidden" name="displayNumOfPage" value="20" />
+            <input type="hidden" name="colNum" value="<%= colNum %>" />
+            <button id="displayNumOpt20" class="btn btn-secondary">20</button>
+          </form>
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input type="hidden" name="displayNumOfPage" value="50" />
+            <input type="hidden" name="colNum" value="<%= colNum %>" />
+            <button id="displayNumOpt50" class="btn btn-secondary">50</button>
+          </form>
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+          >
+            <input type="hidden" name="displayNumOfPage" value="100" />
+            <input type="hidden" name="colNum" value="<%= colNum %>" />
+            <button id="displayNumOpt100" class="btn btn-secondary">100</button>
+          </form>
+        </div>
+      </div>
+      <!-- 選択実行ボタンコンテナ -->
+      <div id="selectOptContainer" class="optContainer">
+        <div class="optContHeader"><p>選択実行</p></div>
+        <div class="optContBody">
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+            id="switchSelectedContentsForm"
+          >
+            <button id="selectOptSwitch" class="btn btn-secondary">
+              選択入れ替え
+            </button>
+          </form>
+          <!-- 選択削除 -->
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+            id="deleteSelectedContentsForm"
+          >
+            <input type="hidden" name="test" value="neko" />
+            <button id="selectOptDelete" class="btn btn-secondary">
+              選択削除
+            </button>
+          </form>
+          <!-- 選択削除 -->
+          <form
+            action="/ietube/images/folderIndPage/<%= folderName %>/<%= page %>"
+            method="post"
+            id="AddFavSelectedContentsForm"
+          >
+            <button id="selectOptFav" class="btn btn-secondary">
+              選択お気に入り
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ページ移動ボタン -->
+    <a
+      href="/ietube/images/folderIndPage/<%= folderName %>/<%= page-1 %>"
+      class="btn btn-secondary"
+      >前へ</a
+    >
+    <a
+      href="/ietube/images/folderIndPage/<%= folderName %>/<%= page+1 %>"
+      class="btn btn-secondary"
+      >次へ</a
+    >
+    <br />
+
+    <!-- 変数管理用 (非表示) -->
+    <p class="folderName meta" id="metaFolderName"><%= folderName %></p>
+    <p class="colNum meta" id="metaColNum"><%= colNum %></p>
+    <p class="displayNumOfPage meta" id="metaDisplayNumOfPage">
+      <%= displayNumOfPage %>
+    </p>
+    <% contentsList.forEach((content)=>{ %>
+    <p class="metaContentName meta"><%= content %></p>
+    <% }) %>
+
+    <!-- フロントエンドjsでコンテナを動的に生成してimgを格納 -->
+    <div id="contentDisplayContainer"></div>
+
+    <!-- ページ移動ボタン -->
+    <a
+      href="/ietube/images/folderIndPage/<%= folderName %>/<%= page-1 %>"
+      class="btn btn-secondary"
+      >前へ</a
+    >
+    <a
+      href="/ietube/images/folderIndPage/<%= folderName %>/<%= page+1 %>"
+      class="btn btn-secondary"
+      >次へ</a
+    >
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/javascripts/folderIndPage.js"></script>
+  </body>
+</html>

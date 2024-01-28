@@ -1,0 +1,48 @@
+body {
+  width: 100vw;
+  background-color: black;
+}
+
+#optionsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 2rem;
+}
+
+.optContainer {
+  border: solid 3px;
+  border-radius: 10px;
+}
+
+.optContainer p {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.optContBody {
+  margin: 0 3%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 1rem;
+}
+
+.optContBody .btn {
+  margin: 2% 1rem;
+}
+
+.rowContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.rowContainer .selected {
+  background-color: aqua;
+}
+
+.contentImg {
+  padding: 0.5%;
+}
+
+.meta {
+  display: none;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/folderListMenu.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <a href="/ietube/images/folderListMenu/<%= page-1 %>">前へ</a>
+    <a href="/ietube/images/folderListMenu/<%= page+1 %>">次へ</a>
+    <br />
+    <% for (const folderName in folderListObj) { %>
+    <div class="folderContainer">
+      <a href="/ietube/images/folderIndPage/<%= folderName %>"
+        ><%= folderName %></a
+      >
+      <div class="thumbnails">
+        <% folderListObj[folderName].forEach((thumbnail)=>{ %>
+        <img src="/images/<%= folderName %>/<%= thumbnail %>" alt="" />
+        <% }) %>
+      </div>
+      <br />
+    </div>
+    <% } %>
+    <a href="/ietube/images/folderListMenu/<%= page-1 %>">前へ</a>
+    <a href="/ietube/images/folderListMenu/<%= page+1 %>">次へ</a>
+  </body>
+</html>
