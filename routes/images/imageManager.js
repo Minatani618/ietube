@@ -37,6 +37,13 @@ class imageManager {
     );
   }
 
+  //不要ファイルを除外する上記メソッドを順に実行するだけ
+  filterContents(contents) {
+    const filteredContents1 = this.filterDeletedContents(contents);
+    const filteredContents2 = this.filterText(filteredContents1);
+    return filteredContents2;
+  }
+
   //ページに表示されるコンテンツを番号順に並び変え(フォルダ内のファイルが番号順になっている前提)
   sortContents(contents) {
     const sortedContents = contents.sort((a, b) => {
@@ -46,6 +53,9 @@ class imageManager {
     });
     return sortedContents;
   }
+
+  //
+  createContentsListArr() {}
 
   setPageNumber(number) {
     this.pageNumber = number;
